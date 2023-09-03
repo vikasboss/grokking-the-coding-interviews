@@ -1,0 +1,12 @@
+#Challenge: Find Two Numbers that Add up to "k"
+def find_sum(lst, k):
+    dicti = {}
+    for item in lst:
+        if k - item in dicti:
+            return [k - item, item]
+        dicti[item] = True
+    return []
+
+# Example usage:
+result = find_sum([1, 21, 3, 14, 5, 60, 7, 6], 81)
+print(result)  # Output: [21, 60]
