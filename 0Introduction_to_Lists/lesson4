@@ -1,0 +1,22 @@
+#Challenge: List of Products of all Elements
+def find_product(lst):
+    # Write your code here
+    pass
+    # arr = [1,2,3,4]
+    # left = [1,1,2,6]
+    # right = [24,12,4,1]
+    left = [1]*len(lst)
+    right = [1]*len(lst)
+    for index,value in enumerate(lst):
+        if index == 0:
+            continue
+        else:
+            left[index] = left[index-1]*lst[index-1]
+    for index in range(len(lst) - 2, -1, -1):
+        right[index] = right[index+1]*lst[index+1]
+    answer = []
+    for index in range(len(lst)):
+        answer.append(left[index]*right[index])
+    return answer
+
+print(find_product([1,2,3,4]))
