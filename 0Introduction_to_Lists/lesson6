@@ -1,0 +1,24 @@
+#Challenge: First Non-Repeating Integer in a List
+def find_first_unique(lst):
+    # Create a dictionary to store the frequency of each integer
+    frequency_dict = {}
+    
+    # Iterate through the list and count the frequency of each integer
+    for num in lst:
+        if num in frequency_dict:
+            frequency_dict[num] += 1
+        else:
+            frequency_dict[num] = 1
+    
+    # Iterate through the list again to find the first integer with a frequency of 1
+    for num in lst:
+        if frequency_dict[num] == 1:
+            return num
+    
+    # If no unique integer is found, return None
+    return None
+
+# Example usage:
+lst = [2, 3, 4, 3, 2, 5, 6, 6]
+result = find_first_unique(lst)
+print(result)  # Output: 4

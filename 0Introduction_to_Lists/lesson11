@@ -1,0 +1,15 @@
+# Challenge: Maximum Sum Sublist
+
+def find_max_sum_sublist(lst):
+    maximumSoFar = 0
+    currSum = 0
+    for element in lst:
+        currSum += element
+        if maximumSoFar < currSum:
+            maximumSoFar = currSum
+        if currSum < 0:
+            currSum = 0
+    return maximumSoFar
+
+
+print(find_max_sum_sublist([-4, 2, -5, 1, 2, 3, 6, -5, 1]))

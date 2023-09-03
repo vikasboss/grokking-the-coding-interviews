@@ -1,0 +1,35 @@
+# Challenge: Right Rotate List
+def reverseArray(nums, i, j):
+    while i < j:
+        nums[i], nums[j] = nums[j], nums[i]
+        i += 1
+        j -= 1
+    return nums
+
+
+def right_rotate(lst, k):
+    n = len(lst)
+    if n <= 0 or k <= 0:
+        return lst
+    k = k % n  # Ensure k is within the range of the list length
+    lst = reverseArray(lst, 0, n-1)
+    lst = reverseArray(lst, 0, k-1)
+    lst = reverseArray(lst, k, n-1)
+    return lst
+
+
+lst = [10, 20, 30, 40, 50]
+print(right_rotate(lst, 3))
+
+
+# Solution #2: Pythonic Rotation
+def right_rotate(lst, k):
+    # get rotation index
+    if len(lst) == 0:
+        k = 0
+    else:
+        k = k % len(lst)
+    return lst[-k:] + lst[:-k]
+
+
+print(right_rotate([10, 20, 30, 40, 50], abs(3)))
