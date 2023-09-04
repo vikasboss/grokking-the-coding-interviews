@@ -1,4 +1,4 @@
-# insert at head implementation
+# insert at tail implementation
 class Node:
     def __init__(self, data):
         self.data = data
@@ -9,22 +9,16 @@ class LinkedList:
     def __init__(self):
         self.head_node = None
 
-    # Insertion at Head
-    def insert_at_head(self, data):
-        # Create a new node containing your specified value
-        temp_node = Node(data)
-        # The new node points to the same node as the head
-        temp_node.next_element = self.head_node
-        self.head_node = temp_node  # Make the head point to the new node
-        return self.head_node  # return the new list
+    def get_head(self):
+        return self.head_node
 
     def is_empty(self):
-        if self.head_node is None:
+        if (self.head_node is None):  # Check whether the head is None
             return True
         else:
             return False
 
-# Supplementary print function
+    # Supplementary print function
     def print_list(self):
         if (self.is_empty()):
             print("List is Empty")
@@ -37,10 +31,21 @@ class LinkedList:
         return True
 
 
+def insert_at_tail(lst, value):
+    temp_node = Node(data=value)
+    current_node = lst.get_head()
+    if current_node is None:
+        lst.head_node = temp_node
+    else:
+        while current_node.next_element is not None:
+            current_node = current_node.next_element
+        current_node.next_element = temp_node
+
+
 list = LinkedList()
 list.print_list()
 
-print("Inserting values in list at head")
+print("Inserting values in list at tail")
 for i in range(1, 10):
-    list.insert_at_head(i)
+    insert_at_tail(list, i)
 list.print_list()
