@@ -1,0 +1,27 @@
+# Challenge: Reversing First k Elements of Queue
+from lesson0 import MyStack
+from lesson1 import MyQueue
+
+
+def reverseK(queue, k):
+    # Write your code here
+    if queue.is_empty() is True or k > queue.size() or k < 0:
+        return None
+    stack_obj = MyStack()
+    for _ in range(k):
+        stack_obj.push(queue.dequeue())
+    while stack_obj.is_empty() is False:
+        queue.enqueue(stack_obj.pop())
+    size = queue.size()
+    for i in range(size-k):
+        queue.enqueue(queue.dequeue())
+    return queue
+
+
+queue_obj = MyQueue()
+queue_items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+for i in range(len(queue_items)):
+    queue_obj.enqueue(queue_items[i])
+print(queue_obj.items)
+reversed_k_queue = reverseK(queue_obj, 3)
+print(reversed_k_queue.items)

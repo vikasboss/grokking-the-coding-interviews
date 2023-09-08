@@ -1,0 +1,86 @@
+# Challenge: min( ) Function Using a Stack
+
+from lesson0 import MyStack
+
+# Create Stack => stack = myStack(5); where 5 is size of stack
+# Create Queue => queue = myQueue(5); where 5 is size of queue
+# Stack Functions => isEmpty(), isFull(), top()
+# Queue Functions => enqueue(int),dequeue(),isEmpty(),getSize()
+
+
+class MinStack:
+    # Constructor
+    def __init__(self):
+        # Write your code here
+        self.main_stack = MyStack()
+        self.min_stack = MyStack()
+
+    def pop(self):
+        # Write your code here
+        if self.main_stack.is_empty():
+            return -1
+        elementPopped = self.main_stack.peek()
+        while self.min_stack.is_empty() == False and self.min_stack.peek() != elementPopped:
+            self.main_stack.push(self.min_stack.pop())
+        self.min_stack.pop()
+        while self.main_stack.is_empty() == False and self.main_stack.peek() == elementPopped:
+            self.min_stack.push(self.main_stack.pop())
+        return self.main_stack.pop()
+
+    # Pushes value into new stack
+    def push(self, value):
+        # Write your code here
+        self.main_stack.push(value=value)
+        if self.min_stack.is_empty():
+            self.min_stack.push(value=value)
+        else:
+            elementAtTopMain = self.main_stack.peek()
+            while self.min_stack.is_empty() == False and value > self.min_stack.peek():
+                self.main_stack.push(self.min_stack.pop())
+            self.min_stack.push(value=value)
+            while self.main_stack.peek() != elementAtTopMain:
+                self.min_stack.push(self.main_stack.pop())
+
+    # Returns minimum value from new stack in constant time
+
+    def min(self):
+        # Write your code here
+        if self.min_stack.is_empty():
+            return -1
+        return self.min_stack.peek()
+
+    # Write any helper functions here
+
+
+if __name__ == "__main__":
+    stack = MinStack()
+    stack.push(5)
+
+    stack.push(0)
+
+    stack.push(2)
+    stack.push(4)
+    stack.push(1)
+    stack.push(3)
+    stack.push(0)
+    print("Main stack:", stack.main_stack.stack_list)
+    print("Min stack:", stack.min_stack.stack_list)
+    print("Minimum value: " + str(stack.min()))
+    stack.pop()
+    stack.push(-2)
+    print("Main stack:", stack.main_stack.stack_list)
+    print("Min stack:", stack.min_stack.stack_list)
+    print("Minimum value: " + str(stack.min()))
+    stack.pop()
+    print("Main stack:", stack.main_stack.stack_list)
+    print("Min stack:", stack.min_stack.stack_list)
+    print("Minimum value: " + str(stack.min()))
+
+
+'''
+2   0
+0   2
+5   5
+
+
+'''

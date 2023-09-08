@@ -1,0 +1,28 @@
+# Challenge: Check Balanced Parentheses Using Stack
+from lesson0 import MyStack
+
+dictionary = {}
+dictionary['}'] = '{'
+dictionary[']'] = '['
+dictionary[')'] = '('
+
+
+def is_balanced(exp):
+    # Write your code here
+    pass
+    stack = MyStack()
+    for characters in exp:
+        if dictionary.get(characters, None) is None:
+            stack.push(characters)
+        else:
+            if dictionary.get(characters) == stack.peek():
+                stack.pop()
+            else:
+                return False
+    return stack.is_empty()
+
+
+exp = "{[({})]}"
+print(is_balanced(exp=exp))
+exp = "{([](}"
+print(is_balanced(exp=exp))

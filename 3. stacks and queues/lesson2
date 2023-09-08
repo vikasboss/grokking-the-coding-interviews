@@ -1,0 +1,20 @@
+from lesson1 import MyQueue
+
+
+def find_bin(number):
+    # Write your code here
+    pass
+    result = []
+    queue = MyQueue()
+    queue.enqueue("1")
+    for i in range(number):
+        result.append(queue.dequeue())
+        s1 = result[i]+"0"
+        s2 = result[i]+"1"
+        queue.enqueue(s1)
+        queue.enqueue(s2)
+
+    return result
+
+
+print(find_bin(3))

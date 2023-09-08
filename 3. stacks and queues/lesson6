@@ -1,0 +1,29 @@
+# Challenge: Sort Values in a Stack
+from lesson0 import MyStack
+
+
+def sort_stack(stack):
+    temp_stack = MyStack()
+    while not stack.is_empty():
+        value = stack.pop()
+        if temp_stack.peek() is None or value >= temp_stack.peek():
+            temp_stack.push(value)
+        else:
+            while not temp_stack.is_empty() and value < temp_stack.peek():
+                stack.push(temp_stack.pop())
+            temp_stack.push(value=value)
+    while not temp_stack.is_empty():
+        stack.push(temp_stack.pop())
+    return stack
+
+
+if __name__ == "__main__":
+    stack_obj = MyStack()
+    elements_to_push = [23, 60, 12, 42, 4, 97, 2]
+    for element in elements_to_push:
+        stack_obj.push(element)
+    # Sorting the stack
+    stack = sort_stack(stack_obj)
+    # Printing the sorted stack
+    print("Stack after sorting")
+    print([stack.pop() for i in range(stack.size())])

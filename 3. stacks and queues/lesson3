@@ -1,0 +1,55 @@
+# Challenge: Implement Two Stacks Using One List
+class TwoStacks:
+    # Initialize the two stacks here
+    def __init__(self, size):
+        self.size = size
+        self.list = [None] * size
+        self.top1 = -1  # Initialize top pointer for stack 1
+        self.top2 = size  # Initialize top pointer for stack 2
+
+    # Insert Value in First Stack
+    def push1(self, value):
+        if self.top1 < self.top2 - 1:
+            self.top1 += 1
+            self.list[self.top1] = value
+        else:
+            print("Stack 1 Overflow")
+
+    # Insert Value in Second Stack
+    def push2(self, value):
+        if self.top1 < self.top2 - 1:
+            self.top2 -= 1
+            self.list[self.top2] = value
+        else:
+            print("Stack 2 Overflow")
+
+    # Return and remove top Value from First Stack
+    def pop1(self):
+        if self.top1 >= 0:
+            value = self.list[self.top1]
+            self.top1 -= 1
+            return value
+        else:
+            print("Stack 1 Underflow")
+
+    # Return and remove top Value from Second Stack
+    def pop2(self):
+        if self.top2 < self.size:
+            value = self.list[self.top2]
+            self.top2 += 1
+            return value
+        else:
+            print("Stack 2 Underflow")
+
+
+# Testing the TwoStacks class
+two_stacks = TwoStacks(5)
+two_stacks.push1(1)
+two_stacks.push1(2)
+two_stacks.push2(3)
+two_stacks.push2(4)
+two_stacks.push2(5)
+
+print(two_stacks.pop1())  # Output: 2
+print(two_stacks.pop2())  # Output: 5
+print(two_stacks.pop2())  # Output: 4

@@ -1,0 +1,62 @@
+# Challenge: Implement a Queue Using Stacks
+class MyStack:
+    def __init__(self):
+        self.stack_list = []
+        self.stack_size = 0
+
+    def is_empty(self):
+        return self.stack_size == 0
+
+    def peek(self):
+        if self.is_empty():
+            return None
+        return self.stack_list[-1]
+
+    def size(self):
+        return self.stack_size
+
+    def push(self, value):
+        self.stack_size += 1
+        self.stack_list.append(value)
+
+    def pop(self):
+        if self.is_empty():
+            return None
+        self.stack_size -= 1
+        return self.stack_list.pop()
+
+
+class NewQueue:
+    def __init__(self):
+        self.main_stack = MyStack()
+        self.auxillary_stack = MyStack()
+        # Write your code here
+
+    # Inserts Element in the Queue
+
+    def enqueue(self, value):
+        # Write your code here
+        while self.main_stack.is_empty() is False:
+            self.auxillary_stack.push(self.main_stack.pop())
+        self.auxillary_stack.push(value)
+        while self.auxillary_stack.is_empty() is False:
+            self.main_stack.push(self.auxillary_stack.pop())
+
+    # Removes Element From Queue
+
+    def dequeue(self):
+        # Write your code here
+        if self.main_stack.is_empty() is True:
+            print("Queue is Empty")
+            return None
+        else:
+            return self.main_stack.pop()
+
+
+if __name__ == "__main__":
+    queue = NewQueue()
+    for i in range(5):
+        queue.enqueue(i+1)
+    print("----------")
+    for i in range(5):
+        queue.dequeue()
