@@ -1,6 +1,6 @@
 # graphs/lesson0.py
 
-from b_linkedlist import LinkedList
+from linkedList import LinkedList
 
 
 class Graph:
@@ -35,3 +35,15 @@ class Graph:
                 print("[", temp.data, end=" ] -> ")
                 temp = temp.next_element
             print("None")
+
+
+if __name__ == "__main__":
+    g = Graph(4)
+    g.add_edge(0, 2)
+    g.add_edge(0, 1)
+    g.add_edge(1, 3)
+    g.add_edge(2, 3)
+
+    g.print_graph()
+
+    print(g.array[1].get_head().data)
