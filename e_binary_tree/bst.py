@@ -155,19 +155,20 @@ def _display_aux(node):
     return lines, n + m + u, max(p, q) + 2, n + u // 2
 
 
-BST = BinarySearchTree(6)
-BST.insert(3)
-BST.insert(2)
-BST.insert(4)
-BST.insert(-1)
-BST.insert(1)
-BST.insert(-2)
-BST.insert(8)
-BST.insert(7)
+if __name__ == "__main__":
+    BST = BinarySearchTree(6)
+    BST.insert(3)
+    BST.insert(2)
+    BST.insert(4)
+    BST.insert(-1)
+    BST.insert(1)
+    BST.insert(-2)
+    BST.insert(8)
+    BST.insert(7)
 
-print("before deletion:")
-display(BST.root)
-print(BST.search(50))  # Will print True since 50 is the root
-BST.delete(10)
-print("after deletion:")
-display(BST.root)
+    print("before deletion:")
+    display(BST.root)
+    print(BST.search(50))  # Will print True since 50 is the root
+    BST.delete(10)
+    print("after deletion:")
+    display(BST.root)
