@@ -1,4 +1,4 @@
-git filter-branch --env-filter '
+git filter-branch -f --env-filter '
 OLD_EMAIL="vikas.sharma@exotel.in"
 CORRECT_NAME="vikasboss6855"
 CORRECT_EMAIL="vikassharma.0407@gmail.com"
